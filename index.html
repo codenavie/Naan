@@ -1,0 +1,180 @@
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>For You ❤️</title>
+        <style>
+            * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            }
+
+            body {
+            height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb);
+            background-size: 400% 400%;
+            animation: bgFlow 15s ease infinite;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: white;
+            }
+
+            @keyframes bgFlow {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+            }
+
+            .container {
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
+            backdrop-filter: blur(15px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+            animation: fadeIn 2s ease forwards;
+            }
+
+            h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px #ffccf9, 0 0 20px #ffb6b9;
+            }
+
+            p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-top: 10px;
+            min-height: 80px;
+            }
+
+        .typewriter {
+    border-right: 2px solid white;
+    white-space: normal;           /* allow wrapping */
+    overflow-wrap: break-word;     /* wrap long words */
+    animation: blinkCursor 1s step-end infinite;
+    }
+
+            @keyframes blinkCursor {
+            50% {
+                border-color: transparent;
+            }
+            }
+
+            button {
+            margin-top: 30px;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            background: #ff6f91;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff6f91, 0 0 20px #ff6f91;
+            transition: transform 0.2s;
+            }
+
+            button:hover {
+            transform: scale(1.05);
+            }
+
+            .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            transform: rotate(45deg);
+            animation: floatHeart 8s infinite ease-in-out;
+            }
+
+            .heart::before, .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: pink;
+            border-radius: 50%;
+            }
+
+            .heart::before {
+            top: -10px;
+            left: 0;
+            }
+
+            .heart::after {
+            left: -10px;
+            top: 0;
+            }
+
+            @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) scale(1) rotate(45deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1.5) rotate(45deg);
+                opacity: 0;
+            }
+            }
+
+            @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.95);}
+            to { opacity: 1; transform: scale(1);}
+            }
+        </style>
+        </head>
+        <body>
+
+        <div class="container">
+            <h1>Hi Love ❤️</h1>
+            <p id="message" class="typewriter"></p>
+            <button onclick="replayMessage()">Replay Message</button>
+        </div>
+
+        <script>
+            const message = "Just wanted to remind you how amazing you are. Every moment with you is a blessing, and I’m so lucky to have you in my life. 💖";
+            const msgElem = document.getElementById('message');
+            let i = 0;
+
+            function typeMessage() {
+            if (i < message.length) {
+                msgElem.textContent += message.charAt(i);
+                i++;
+                setTimeout(typeMessage, 50);
+            }
+            }
+
+            function replayMessage() {
+            msgElem.textContent = "";
+            i = 0;
+            typeMessage();
+            }
+
+            // Initial typing effect
+            typeMessage();
+
+            // Create floating hearts
+            function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart");
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+            document.body.appendChild(heart);
+
+            setTimeout(() => heart.remove(), 10000);
+            }
+
+            setInterval(createHeart, 500);
+        </script>
+
+        </body>
+        </html>
